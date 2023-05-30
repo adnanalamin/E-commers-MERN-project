@@ -1,0 +1,24 @@
+jekhane req,res,next thake sei tai middleware
+
+const isLoggedIn = (req,res,next)=>{
+	console.log("IsLoggedIn A middleware");
+	next();
+};
+
+ex-1:
+
+const isLoggedIn = (req,res,next)=>{
+	const logIn = false;
+	if (logIn) {
+		next();
+	} else{
+		return res.status(401).json({message:"Login Faild"})
+	};
+};
+
+app.post('/test',isLoggedIn,(req,res)=>{
+	console.log("User Profile");
+	res.status(200).send({
+		message:"put api is working!",
+	})
+});
